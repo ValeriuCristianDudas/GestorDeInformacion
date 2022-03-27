@@ -51,7 +51,7 @@ public class Main {
 					} else if (s.length == 2 || (s.length == 3 && s[2].equalsIgnoreCase("c"))) {
 						mAas(aa, am, nip, ":)");
 					} else {
-						System.out.println(s[2] + " No es un parametro valido");
+						System.out.println(s[2] + " No es un codigo valido");
 					}
 
 				} else if (s[0].equalsIgnoreCase("alumnos")) {
@@ -277,13 +277,14 @@ public class Main {
 			DataOutputStream f = new DataOutputStream(new FileOutputStream(".//matriculas.dat"));
 			for (int i = 0; i < am.size(); i++) {
 				if (n == am.get(i).getNip()) {
-					ocu++;
 					if (s.size() == 0) {
+						ocu++;
 						am.remove(i);
 						i--;
 					} else {
 						for (int j = 0; j < s.size(); j++) {
 							if (am.get(i).getCod() == s.get(j)) {
+								ocu++;
 								am.remove(i);
 							}
 						}
@@ -293,6 +294,8 @@ public class Main {
 			}
 			if(ocu == 0) {
 				System.out.println("NIP: " + n + " no encontrado en lista de matriculas");
+			} else {
+				System.out.println("Se han eliminado " + ocu + " matriculas de NIP: " + n);
 			}
 			int o = 0;
 			while (true) {
