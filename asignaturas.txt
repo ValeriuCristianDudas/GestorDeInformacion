@@ -1,0 +1,16 @@
+30201 6.0 1 FB Fundamentos Administracion de Empresas
+30202 6.0 1 FB Programacion I
+30203 6.0 1 FB Sistemas Informaticos
+30204 6.0 1 FB Entornos de Desarrollo
+30205 2.0 1 FB Ingles - B1
+30206 6.0 1 FB Bases de Datos I
+30207 6.0 2 FB Programacion II
+30208 6.0 2 FB Sistemas Informaticos II
+30209 6.0 2 FB Bases de Datos II
+30210 6.0 3 FB Administracion de Sistemas
+30211 6.0 3 FB Diseño de Interfaces
+30212 6.0 3 OP Sistemas de Informacion
+30213 6.0 3 OP Bases de Datos II
+30214 6.0 4 FB Programacion III
+30215 6.0 4 OP Sistemas de Informacion II
+30216 8.0 4 TF Trabajo Fin de Grado
