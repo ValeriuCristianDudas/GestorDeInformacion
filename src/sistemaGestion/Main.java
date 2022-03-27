@@ -15,93 +15,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-	
-	/**
-	 * Pre: 
-	 * Post: Este metodo main crea las variables principales y recoje los datos introducidos
-	 * por el usuario, despues los modifica para hacerlos compatibles con todos los metodos
-	 * 
-	 */
-	public static void main(String[] args) {
-		ArrayList<Alumno> al = new ArrayList<Alumno>();
-		ArrayList<Matricula> am = new ArrayList<Matricula>();
-		ArrayList<Asignatura> aa = new ArrayList<Asignatura>();
-		ArrayList<Integer> cods = new ArrayList<Integer>();
-		al = lF(".//alumnos.csv", al);
-		am = mat(".//matriculas.dat", am);
-		aa = lFa(".//asignaturas.txt", aa);
-		Scanner capt = new Scanner(System.in);
-		String m = null;
-		int nip = 0;
-		int cod = 0;
-		String[] s = null;
-		while (true) {
-			int pos = 1;
-			System.out.print("orden> ");
-			m = capt.nextLine();
-			m = m.replace("{", "").replace("}", "").replace(",", "");
-			s = m.split(" ");
-			try {
-				if (s[0].equalsIgnoreCase("matriculas")) {
-					System.out.println(am.size());
-				} else if (s[0].equalsIgnoreCase("asignaturas")) {
-					nip = Integer.parseInt(s[1]);
-					if (s.length == 3 && s[2].equalsIgnoreCase("a")) {
-						mAas(aa, am, nip, s[2]);
-					} else if (s.length == 2 || (s.length == 3 && s[2].equalsIgnoreCase("c"))) {
-						mAas(aa, am, nip, ":)");
-					} else {
-						System.out.println(s[2] + " No es un codigo valido");
-					}
-
-				} else if (s[0].equalsIgnoreCase("alumnos")) {
-					cod = Integer.parseInt(s[1]);
-					if (s.length == 3 && s[2].equalsIgnoreCase("a")) {
-						for (int j = 0; j < aa.size(); j++) {
-							if (cod == aa.get(j).getCod()) {
-								System.out.println("Alumnos matriculados en " + aa.get(j).toString());
-							}
-						}
-						mAma(am, al, cod, s[2]);
-					} else if (s.length == 2 || (s.length == 3 && s[2].equalsIgnoreCase("n"))) {
-						for (int j = 0; j < aa.size(); j++) {
-							if (cod == aa.get(j).getCod()) {
-								System.out.println("Alumnos matriculados en " + aa.get(j).toString());
-							}
-						}
-						mAma(am, al, cod, ":)");
-					} else {
-						System.out.println(s[2] + " No es un parametro valido");
-					}
-
-				} else if (s[0].equalsIgnoreCase("eliminar")) {
-					nip = Integer.parseInt(s[1]);
-					if (s.length > 2) {
-						for (int v = 2; v < s.length; v++) {
-							cods.add(Integer.parseInt(s[v]));
-						}
-					}
-					am = eB(am, cods, nip);
-					cods.removeAll(cods);
-
-				} else if (s[0].equalsIgnoreCase("matricular")) {
-					nip = Integer.parseInt(s[1]);
-					for (int v = 2; v < s.length; v++) {
-						cods.add(Integer.parseInt(s[v]));
-					}
-					am = matr(am, al, cods, aa, nip);
-					cods.removeAll(cods);
-
-				} else if (s[0].equalsIgnoreCase("fin")) {
-					System.exit(0);
-				} else {
-					System.out.println("Orden no encontrada");
-				}
-			} catch (Exception e) {
-				System.out.println("COMANDO FALLIDO");
-			}
-		}
-	}
 
 	/**
 	 * Pre: 
@@ -363,5 +276,92 @@ public class Main {
 			
 		}
 		return am;
+	}
+	
+	/**
+	 * Pre: 
+	 * Post: Este metodo main crea las variables principales y recoje los datos introducidos
+	 * por el usuario, despues los modifica para hacerlos compatibles con todos los metodos
+	 * 
+	 */
+	public static void main(String[] args) {
+		ArrayList<Alumno> al = new ArrayList<Alumno>();
+		ArrayList<Matricula> am = new ArrayList<Matricula>();
+		ArrayList<Asignatura> aa = new ArrayList<Asignatura>();
+		ArrayList<Integer> cods = new ArrayList<Integer>();
+		al = lF(".//alumnos.csv", al);
+		am = mat(".//matriculas.dat", am);
+		aa = lFa(".//asignaturas.txt", aa);
+		Scanner capt = new Scanner(System.in);
+		String m = null;
+		int nip = 0;
+		int cod = 0;
+		String[] s = null;
+		while (true) {
+			int pos = 1;
+			System.out.print("orden> ");
+			m = capt.nextLine();
+			m = m.replace("{", "").replace("}", "").replace(",", "");
+			s = m.split(" ");
+			try {
+				if (s[0].equalsIgnoreCase("matriculas")) {
+					System.out.println(am.size());
+				} else if (s[0].equalsIgnoreCase("asignaturas")) {
+					nip = Integer.parseInt(s[1]);
+					if (s.length == 3 && s[2].equalsIgnoreCase("a")) {
+						mAas(aa, am, nip, s[2]);
+					} else if (s.length == 2 || (s.length == 3 && s[2].equalsIgnoreCase("c"))) {
+						mAas(aa, am, nip, ":)");
+					} else {
+						System.out.println(s[2] + " No es un codigo valido");
+					}
+
+				} else if (s[0].equalsIgnoreCase("alumnos")) {
+					cod = Integer.parseInt(s[1]);
+					if (s.length == 3 && s[2].equalsIgnoreCase("a")) {
+						for (int j = 0; j < aa.size(); j++) {
+							if (cod == aa.get(j).getCod()) {
+								System.out.println("Alumnos matriculados en " + aa.get(j).toString());
+							}
+						}
+						mAma(am, al, cod, s[2]);
+					} else if (s.length == 2 || (s.length == 3 && s[2].equalsIgnoreCase("n"))) {
+						for (int j = 0; j < aa.size(); j++) {
+							if (cod == aa.get(j).getCod()) {
+								System.out.println("Alumnos matriculados en " + aa.get(j).toString());
+							}
+						}
+						mAma(am, al, cod, ":)");
+					} else {
+						System.out.println(s[2] + " No es un parametro valido");
+					}
+
+				} else if (s[0].equalsIgnoreCase("eliminar")) {
+					nip = Integer.parseInt(s[1]);
+					if (s.length > 2) {
+						for (int v = 2; v < s.length; v++) {
+							cods.add(Integer.parseInt(s[v]));
+						}
+					}
+					am = eB(am, cods, nip);
+					cods.removeAll(cods);
+
+				} else if (s[0].equalsIgnoreCase("matricular")) {
+					nip = Integer.parseInt(s[1]);
+					for (int v = 2; v < s.length; v++) {
+						cods.add(Integer.parseInt(s[v]));
+					}
+					am = matr(am, al, cods, aa, nip);
+					cods.removeAll(cods);
+
+				} else if (s[0].equalsIgnoreCase("fin")) {
+					System.exit(0);
+				} else {
+					System.out.println("Orden no encontrada");
+				}
+			} catch (Exception e) {
+				System.out.println("COMANDO FALLIDO");
+			}
+		}
 	}
 }
